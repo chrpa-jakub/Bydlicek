@@ -15,23 +15,16 @@ namespace LiveBot
         
         public Flat DecideParse(int i, string link)
         {
-            switch (i)
+            return i switch
             {
-                case 0:
-                    return new BezrealitkyParser().Parse(link);
-                case 1:
-                    return new SeznamParser().Parse(link);
-                case 2:
-                    return new IdnesParser().Parse(link);
-                case 3:
-                    return new CeskeRealityParser().Parse(link);
-                case 4:
-                    return new RealityMixParser().Parse(link);
-                case 5:
-                    return new RemaxParser().Parse(link);
-            }
-
-            throw new Exception("Wrong index");
+                0 => new BezrealitkyParser().Parse(link),
+                1 => new SeznamParser().Parse(link),
+                2 => new IdnesParser().Parse(link),
+                3 => new CeskeRealityParser().Parse(link),
+                4 => new RealityMixParser().Parse(link),
+                5 => new RemaxParser().Parse(link),
+                _ => throw new Exception("Wrong index.")
+            };
         }
     }
 }

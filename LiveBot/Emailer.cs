@@ -18,7 +18,7 @@ namespace LiveBot
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                // Přihlášení
+                // Heslo
                 Timeout = 20000
             };
         }
