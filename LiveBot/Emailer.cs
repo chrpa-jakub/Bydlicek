@@ -32,7 +32,7 @@ namespace LiveBot
                     for (var i = 0; i < values.Count; i++)
                     {
                         values[i].Flat = values[i].DecideParse(i, links[i]);
-                        Console.WriteLine($"Old: {values[i].OldId} Found: {values[i].Flat.Id}");
+                        Console.WriteLine($"{i} Old: {values[i].OldId} Found: {values[i].Flat.Id}");
                         if (values[i].Flat.Id != values[i].OldId)
                         {
                             Console.WriteLine($"Nový byt! {values[i].Flat.Link}");
@@ -57,9 +57,9 @@ namespace LiveBot
             var from = new MailAddress("bydlicekpraha@gmail.com", "Od Bydlíčka");
             var sendTo = new List<MailAddress>
             {
-                new MailAddress("vobo470@gmail.com"),
+                // new MailAddress("vobo470@gmail.com"),
                 new MailAddress("diahexik@gmail.com"),
-                new MailAddress("michkocze@gmail.com")
+                // new MailAddress("michkocze@gmail.com")
             };
             foreach (var adress in sendTo)
             {

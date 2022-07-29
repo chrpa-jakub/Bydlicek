@@ -23,6 +23,11 @@ namespace LiveBot
                 3 => new CeskeRealityParser().Parse(link),
                 4 => new RealityMixParser().Parse(link),
                 5 => new RemaxParser().Parse(link),
+                6 => new Reality18Parser().Parse(link),
+                7 => new DumrealitParser().Parse(link),
+                8 => new MaxiRealityParser().Parse(link),
+                9 => new ChirsParser().Parse(link),
+                10 => new MamParser().Parse(link),
                 _ => throw new Exception("Wrong index.")
             };
         }
