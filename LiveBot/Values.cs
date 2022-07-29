@@ -28,6 +28,7 @@ namespace LiveBot
                 8 => new MaxiRealityParser().Parse(link),
                 9 => new ChirsParser().Parse(link),
                 10 => new MamParser().Parse(link),
+                11 => new BythosParser().Parse(link),
                 _ => throw new Exception("Wrong index.")
             };
         }

@@ -20,7 +20,8 @@ namespace LiveBot
                 "https://www.dumrealit.cz/nemovitosti/pronajem/cena-0-22000/byt/3-1/okres-hlavni-mesto-praha-3100/razeni-nejnovejsi",
                 "https://www.maxirealitypraha.cz/pronajem/byty/byty-3-1/do-22000/nejnovejsi/?d_subtyp=208,209,210,211&patro_od=&patro_do=",
                 "https://www.chirs.cz/api/record/map?filter=%7B%22offer%22:%22pronajem%22,%22estate%22:%22byt%22,%22case%22:%22nabidka%22,%22surfaceFrom%22:%220%22,%22surface%22:%22%22,%22surfaceTo%22:%22100000%22,%22priceFrom%22:%220%22,%22price%22:%22%22,%22priceTo%22:%2222000%22,%22gpsLat%22:50.025000000000006,%22gpsLng%22:14.3,%22sold%22:false,%22openday%22:false,%22address%22:%22praha%22%7D&squares=%5B%22%7B%5C%22swlat%5C%22:48,%5C%22swlng%5C%22:12,%5C%22nelat%5C%22:50,%5C%22nelng%5C%22:16%7D%22,%22%7B%5C%22swlat%5C%22:50,%5C%22swlng%5C%22:12,%5C%22nelat%5C%22:52,%5C%22nelng%5C%22:16%7D%22%5D",
-                "https://www.mmreality.cz/nemovitosti/?query=bY5NDsIgEEZv0zXQYt105TEIC4KIJC1D6GDC7aVgownOavK%2BNz8atg280AqNhZjlQumgGwvRaSMFglwYI4ScfEeFaZeCFPlkSqN7mQNYAzaq8Mzibh4qrXiD5LFu%2FslWKBcd%2BLZmJJ%2FifJqvbLARUthLImpXn%2FoyzMG0Oc57TMu35I%2FOin7p8XjorOdT0ec3"
+                "https://www.mmreality.cz/nemovitosti/?query=bY5NDsIgEEZv0zXQYt105TEIC4KIJC1D6GDC7aVgownOavK%2BNz8atg280AqNhZjlQumgGwvRaSMFglwYI4ScfEeFaZeCFPlkSqN7mQNYAzaq8Mzibh4qrXiD5LFu%2FslWKBcd%2BLZmJJ%2FifJqvbLARUthLImpXn%2FoyzMG0Oc57TMu35I%2FOin7p8XjorOdT0ec3",
+                "https://www.bythos.cz"
             };
             var values = new List<Values>();
             var emailer = new Emailer();

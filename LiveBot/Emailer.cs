@@ -32,7 +32,7 @@ namespace LiveBot
                     for (var i = 0; i < values.Count; i++)
                     {
                         values[i].Flat = values[i].DecideParse(i, links[i]);
-                        Console.WriteLine($"{i} Old: {values[i].OldId} Found: {values[i].Flat.Id}");
+                        Console.WriteLine($"{i+1} Old: {values[i].OldId} Found: {values[i].Flat.Id}");
                         if (values[i].Flat.Id != values[i].OldId)
                         {
                             Console.WriteLine($"Nový byt! {values[i].Flat.Link}");
