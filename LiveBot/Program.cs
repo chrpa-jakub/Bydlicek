@@ -29,7 +29,7 @@ namespace LiveBot
             {
                 values.Add(new Values(i, links));
             }
-
+            Console.WriteLine("Bydlíček beží.");
             emailer.Loop(values, links);
         }
     }
