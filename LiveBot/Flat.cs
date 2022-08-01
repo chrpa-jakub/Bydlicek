@@ -24,5 +24,10 @@ namespace LiveBot
             Size = size;
         }
 
+        public string GetRaw()
+        {
+            return $"{Name} {Locality} {Price} {Size}";
+        }
+
     }
 }
