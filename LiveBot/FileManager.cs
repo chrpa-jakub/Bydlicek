@@ -20,7 +20,7 @@ namespace LiveBot
 
         public void AddNewFlat(string rawFlatData)
         {
-            File.AppendAllText(_fileName,$"\n{rawFlatData}");
+            File.AppendAllText(_fileName,$"{rawFlatData}\n");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace LiveBot
 {
     public class SimilarityChecker
     {
-        public bool IsDuplicite(string newString, List<string> oldStrings)
+        public bool IsDuplicate(string newString, List<string> oldStrings)
         {
             var values = new List<int>();
             foreach (var oldString in oldStrings)
