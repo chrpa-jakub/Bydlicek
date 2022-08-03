@@ -16,7 +16,7 @@ namespace LiveBot
                 doc.LoadHtml(rawHtml);
                 if (rawHtml.Contains("TIP regionu"))
                 {
-                    doc.LoadHtml(string.Join("", rawHtml.Split("\n")[350..]));
+                    doc.LoadHtml(string.Join("", rawHtml.Split("\n")[400..]));
                 }
 
                 var link = doc.DocumentNode.SelectSingleNode("//a[@class='advert-list-items__images']").OuterHtml

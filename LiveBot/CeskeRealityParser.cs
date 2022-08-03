@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Text.Unicode;
 using HtmlAgilityPack;
 
 namespace LiveBot
@@ -11,8 +15,10 @@ namespace LiveBot
         {
             try
             {
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 var doc = new HtmlDocument();
-                doc.LoadHtml(new WebClient().DownloadString(url));
+                var encodedHtml = new WebClient {Encoding = Encoding.GetEncoding(1250)}.DownloadString(url);
+                doc.LoadHtml(encodedHtml);
                 var parsable = doc.DocumentNode.SelectSingleNode("//a[contains(@class,'nemo rel')]").OuterHtml;
                 var link = parsable.Split("\"")[1];
                 var name = Regex.Replace(parsable.Split('>')[1], "<sup", "") + "2";

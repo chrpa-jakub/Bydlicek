@@ -13,7 +13,7 @@ namespace LiveBot
             {
                 values.Add(Compute(newString, oldString));
             }
-            return values.Min() < 10;
+            return values.Min() < 15;
         }
         
         private int Compute(string s, string t)
