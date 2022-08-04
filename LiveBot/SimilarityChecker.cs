@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -31,7 +30,7 @@ namespace LiveBot
 
                 sameWordCounts.Add(sameWords);
             }
-            return sameWordCounts.Max() >= newCleanedSplit.Length * 0.8;
+            return sameWordCounts.Max() >= newCleanedSplit.Length * 0.925;
         }
 
         private string CleanString(string input)
