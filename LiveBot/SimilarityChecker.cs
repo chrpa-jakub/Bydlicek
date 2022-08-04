@@ -35,7 +35,7 @@ namespace LiveBot
 
         private string CleanString(string input)
         {
-            return Regex.Replace(input, @",|\.|-|\s{2,}", "").ToLower();
+            return Regex.Replace(input, @",|\.|-|\s{2,}|•", "").ToLower();
         }
     }
 }
