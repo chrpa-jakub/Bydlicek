@@ -40,7 +40,7 @@ namespace LiveBot
                         if (values[i].Flat.Id != values[i].OldId && values[i].Flat.Id != "-1")
                         {
                             if(_similarity.IsDuplicate(values[i].Flat.GetRaw(),_fileManager.GetRawFlats()))
-                                return;
+                                continue;
                         
                             Console.WriteLine($"Email odeslán!");
                             SendFlat(values[i].Flat);
