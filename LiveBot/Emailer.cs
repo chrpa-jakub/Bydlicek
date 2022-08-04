@@ -22,7 +22,7 @@ namespace LiveBot
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                //Heslo
+                // Heslo
                 Timeout = 20000
             };
         }
