@@ -7,9 +7,9 @@ namespace LiveBot
         public Flat Flat;
         public string OldId;
         
-        public FlatStorage(int i, string link)
+        public FlatStorage(Flat.Website website)
         {
-            Flat = Flat.UseCorrectParser(i, link);
+            Flat = new Flat(website);
             OldId = Flat.Id;
         }
     }

@@ -5,7 +5,7 @@ namespace LiveBot
 {
     public class Flat
     {
-        private enum Website
+        public enum Website
         {
             Bezrealitky,
             Seznam,
@@ -44,9 +44,10 @@ namespace LiveBot
             return $"{Name} {Locality} {Price} {Size}";
         }
 
-        public static Flat UseCorrectParser(int i, string link)
+        public Flat (Website website)
         {
-            return (Website)i switch
+            var link = Emailer.Links[(int) website];
+            var flat = website switch
             {
                 Website.Bezrealitky => new BezrealitkyParser().Parse(link),
                 Website.Seznam => new SeznamParser().Parse(link),
@@ -62,6 +63,13 @@ namespace LiveBot
                 Website.Bythos => new BythosParser().Parse(link),
                 _ => throw new Exception("Wrong index.")
             };
+            Id = flat.Id;
+            Name = flat.Name;
+            Locality = flat.Locality;
+            Labels = flat.Labels;
+            Price = flat.Price;
+            Link = flat.Link;
+            Size = flat.Size;
         }
     }
 }
