@@ -41,8 +41,8 @@ namespace LiveBot
                 {
                     for (var i = 0; i < values.Count; i++)
                     {
-                        values[i].Flat = values[i].UseCorrectParser(i, links[i]);
-                        Console.WriteLine($"{i+1} Old: {values[i].OldId} Found: {values[i].Flat.Id}");
+                        values[i].Flat = Flat.UseCorrectParser(i, links[i]);
+                        // Console.WriteLine($"{i+1} Old: {values[i].OldId} Found: {values[i].Flat.Id}");
                         if (values[i].Flat.Id != values[i].OldId && values[i].Flat.Id != "-1")
                         {
                             if(_similarity.IsDuplicate(values[i].Flat.GetRaw(),_fileManager.GetRawFlats()))
