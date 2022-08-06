@@ -19,11 +19,11 @@ namespace LiveBot
                 var longerString = oldCleanedSplit.Length >= newCleanedSplit.Length ? oldCleanedSplit : newCleanedSplit;
                 var shorterString = longerString == oldCleanedSplit ? newCleanedSplit : oldCleanedSplit;
 
-                foreach (var longWord in longerString)
+                foreach (var longerStringWord in longerString)
                 {
-                    foreach (var shortWord in shorterString)
+                    foreach (var shorterStringWord in shorterString)
                     {
-                        if (longWord == shortWord)
+                        if (longerStringWord == shorterStringWord)
                             sameWords++;
                     }
                 }

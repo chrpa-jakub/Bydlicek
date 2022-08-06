@@ -23,12 +23,13 @@ namespace LiveBot
                 "https://www.mmreality.cz/nemovitosti/?query=bY5NDsIgEEZv0zXQYt105TEIC4KIJC1D6GDC7aVgownOavK%2BNz8atg280AqNhZjlQumgGwvRaSMFglwYI4ScfEeFaZeCFPlkSqN7mQNYAzaq8Mzibh4qrXiD5LFu%2FslWKBcd%2BLZmJJ%2FifJqvbLARUthLImpXn%2FoyzMG0Oc57TMu35I%2FOin7p8XjorOdT0ec3",
                 "https://www.bythos.cz"
             };
-            var values = new List<Values>();
+            var values = new List<FlatStorage>();
             var emailer = new Emailer();
             for (var i = 0; i < links.Length; i++)
             {
-                values.Add(new Values(i, links));
+                values.Add(new FlatStorage(i, links[i]));
             }
+
             Console.WriteLine("Bydlíček beží.");
             emailer.Loop(values, links);
         }

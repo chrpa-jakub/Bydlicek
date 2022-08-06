@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Cryptography;
 using System.Threading;
 
 namespace LiveBot
@@ -11,9 +13,13 @@ namespace LiveBot
         private SmtpClient _smtpClient;
         private SimilarityChecker _similarity;
         private FileManager _fileManager;
+        private (string Email, string Password) _emailLogin;
 
         public Emailer()
         {
+            var emailLoginRaw = File.ReadAllLines("logininfo.txt");
+            _emailLogin.Email = emailLoginRaw[0];
+            _emailLogin.Password = emailLoginRaw[1];
             _fileManager = new FileManager("flats.txt");
             _similarity = new SimilarityChecker();
             _smtpClient = new SmtpClient
@@ -22,12 +28,12 @@ namespace LiveBot
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                // Heslo
+                Credentials = new NetworkCredential(_emailLogin.Email, _emailLogin.Password),
                 Timeout = 20000
             };
         }
 
-        public void Loop(List<Values> values, string[] links)
+        public void Loop(List<FlatStorage> values, string[] links)
         {
             while (true)
             {
@@ -35,8 +41,8 @@ namespace LiveBot
                 {
                     for (var i = 0; i < values.Count; i++)
                     {
-                        values[i].Flat = values[i].DecideParse(i, links[i]);
-                        // Console.WriteLine($"{i+1} Old: {values[i].OldId} Found: {values[i].Flat.Id}");
+                        values[i].Flat = values[i].UseCorrectParser(i, links[i]);
+                        Console.WriteLine($"{i+1} Old: {values[i].OldId} Found: {values[i].Flat.Id}");
                         if (values[i].Flat.Id != values[i].OldId && values[i].Flat.Id != "-1")
                         {
                             if(_similarity.IsDuplicate(values[i].Flat.GetRaw(),_fileManager.GetRawFlats()))
@@ -62,16 +68,16 @@ namespace LiveBot
 
         public void SendFlat(Flat flat)
         {
-            var from = new MailAddress("bydlicekpraha@gmail.com", "Od Bydlíčka");
+            var from = new MailAddress(_emailLogin.Email, "Od Bydlíčka");
             var sendTo = new List<MailAddress>
             {
                 new MailAddress("vobo470@gmail.com"),
                 new MailAddress("diahexik@gmail.com"),
                 new MailAddress("michkocze@gmail.com")
             };
-            foreach (var adress in sendTo)
+            foreach (var address in sendTo)
             {
-                _smtpClient.Send(new MailMessage(from, adress)
+                _smtpClient.Send(new MailMessage(from, address)
                 {
                     Subject = GenerateSubject(flat),
                     Body = GenerateBody(flat)

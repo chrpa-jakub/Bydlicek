@@ -33,10 +33,13 @@ namespace LiveBot
                 {
                     int.Parse(Regex.Replace(doc.DocumentNode.SelectSingleNode("//span").InnerHtml.Split("Kč")[0],
                         @"\s+", "")),
-                    int.Parse(Regex.Replace(
-                        doc.DocumentNode
-                            .SelectSingleNode("//span[@class='PropertyPrice_propertyPriceAdditional__gMCQs']").InnerHtml
-                            .Split("Kč")[0], @"\+|\s+", ""))
+                    doc.Text.Contains("PropertyPrice_propertyPriceAdditional__gMCQs")
+                        ? int.Parse(Regex.Replace(
+                            doc.DocumentNode
+                                .SelectSingleNode("//span[@class='PropertyPrice_propertyPriceAdditional__gMCQs']")
+                                .InnerHtml ?? ""
+                                .Split("Kč")[0], @"\+|\s+", ""))
+                        : 0
                 };
                 doc.LoadHtml(newest.OuterHtml);
                 var size = doc.DocumentNode.SelectSingleNode("//li[@class='FeaturesList_featuresListItem__SugGi']")
