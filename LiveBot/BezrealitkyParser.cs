@@ -29,17 +29,12 @@ namespace LiveBot
                 doc.LoadHtml(doc.DocumentNode
                     .SelectSingleNode("//p[@class='PropertyPrice_propertyPrice__aJuok propertyPrice mb-0 mt-3']")
                     .InnerHtml);
+                var withFees = doc.DocumentNode.OuterHtml.Contains("PropertyPrice_propertyPriceAdditional__gMCQs");
                 var prices = new List<int>
                 {
                     int.Parse(Regex.Replace(doc.DocumentNode.SelectSingleNode("//span").InnerHtml.Split("Kč")[0],
                         @"\s+", "")),
-                    doc.Text.Contains("PropertyPrice_propertyPriceAdditional__gMCQs")
-                        ? int.Parse(Regex.Replace(
-                            doc.DocumentNode
-                                .SelectSingleNode("//span[@class='PropertyPrice_propertyPriceAdditional__gMCQs']")
-                                .InnerHtml ?? ""
-                                .Split("Kč")[0], @"\+|\s+", ""))
-                        : 0
+                    withFees ? int.Parse(Regex.Replace(doc.DocumentNode.SelectSingleNode("//span[@class='PropertyPrice_propertyPriceAdditional__gMCQs']").InnerHtml,@"\+|\s|&nbsp;|Kč",""))  : 0
                 };
                 doc.LoadHtml(newest.OuterHtml);
                 var size = doc.DocumentNode.SelectSingleNode("//li[@class='FeaturesList_featuresListItem__SugGi']")

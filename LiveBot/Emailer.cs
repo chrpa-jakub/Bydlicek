@@ -65,7 +65,7 @@ namespace LiveBot
                                 continue;
 
                             Console.WriteLine($"Email odeslán!");
-                            SendFlat(values[i].Flat);
+                            // SendFlat(values[i].Flat);
                             _fileManager.AddNewFlat(values[i].Flat.GetRaw());
                             values[i].OldId = values[i].Flat.Id;
                         }
