@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace LiveBot
@@ -85,15 +86,9 @@ namespace LiveBot
         public void SendFlat(Flat flat)
         {
             var from = new MailAddress(_emailLogin.Email, "Od Bydlíčka");
-            var sendTo = new List<MailAddress>
+            foreach (var address in File.ReadAllLines("mails.txt"))
             {
-                new MailAddress("vobo470@gmail.com"),
-                new MailAddress("diahexik@gmail.com"),
-                new MailAddress("michkocze@gmail.com")
-            };
-            foreach (var address in sendTo)
-            {
-                _smtpClient.Send(new MailMessage(from, address)
+                _smtpClient.Send(new MailMessage(from, new MailAddress(address))
                 {
                     Subject = GenerateSubject(flat),
                     Body = GenerateBody(flat)
@@ -113,7 +108,7 @@ namespace LiveBot
 Byt má dostupnost {flat.Size}, lokalita: {flat.Locality}. Jeho cena je {flat.Price} Kč.
 
 
-{string.Join(", ", flat.Labels)}
+{Regex.Replace(string.Join(", ", flat.Labels),@"\s,\s",", ")}
 ";
         }
     }
