@@ -25,7 +25,7 @@ namespace LiveBot
                     .InnerHtml;
                 var labels = doc.DocumentNode
                     .SelectSingleNode("//p[@class='mt-2 mt-md-3 mb-0 text-caption text-truncate-multiple']").InnerHtml
-                    .Split('•').ToList();
+                    .Split('•').Select(s => s.Trim(' ')).ToList();
                 doc.LoadHtml(doc.DocumentNode
                     .SelectSingleNode("//p[@class='PropertyPrice_propertyPrice__aJuok propertyPrice mb-0 mt-3']")
                     .InnerHtml);
@@ -34,7 +34,12 @@ namespace LiveBot
                 {
                     int.Parse(Regex.Replace(doc.DocumentNode.SelectSingleNode("//span").InnerHtml.Split("Kč")[0],
                         @"\s+", "")),
-                    withFees ? int.Parse(Regex.Replace(doc.DocumentNode.SelectSingleNode("//span[@class='PropertyPrice_propertyPriceAdditional__gMCQs']").InnerHtml,@"\+|\s|&nbsp;|Kč",""))  : 0
+                    withFees
+                        ? int.Parse(Regex.Replace(
+                            doc.DocumentNode
+                                .SelectSingleNode("//span[@class='PropertyPrice_propertyPriceAdditional__gMCQs']")
+                                .InnerHtml, @"\+|\s|&nbsp;|Kč", ""))
+                        : 0
                 };
                 doc.LoadHtml(newest.OuterHtml);
                 var size = doc.DocumentNode.SelectSingleNode("//li[@class='FeaturesList_featuresListItem__SugGi']")

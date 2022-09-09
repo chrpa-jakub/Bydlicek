@@ -108,7 +108,7 @@ namespace LiveBot
 Byt má dostupnost {flat.Size}, lokalita: {flat.Locality}. Jeho cena je {flat.Price} Kč.
 
 
-{Regex.Replace(string.Join(", ", flat.Labels),@"\s,\s",", ")}
+{string.Join(", ", flat.Labels)}
 ";
         }
     }
